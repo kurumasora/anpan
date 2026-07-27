@@ -10,8 +10,8 @@ static int parse_target_count(int argc, char *argv[], int *target_count)
     char *end;
     long value;
 
-    if (argc == 1) {
-        *target_count = 12;
+     if (argc == 1) {
+        *target_count= 12;
         return 0;
     }
     if (argc != 2) {
@@ -20,7 +20,8 @@ static int parse_target_count(int argc, char *argv[], int *target_count)
 
     errno = 0;
     end = NULL;
-    value = strtol(argv[1], &end, 10);
+    value = strtol(argv[1], &end, 10); //strtol()はargv[1]をcharからintに変換
+    //不正な入力を弾く
     if (errno != 0 || end == argv[1] || *end != '\0' ||
         value < 0 || value > INT_MAX) {
         return -1;
