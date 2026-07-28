@@ -76,12 +76,12 @@ static int move_conveyor(double target)
     double current = commanded_position;
 
     while (fabs(target - current) > POSITION_TOLERANCE) {
-        double remaining = target - current;
-        double next = target;
+        double remaining = target - current;//現在地から目標値の差
+        double next = target;//移動距離
 
-        if (remaining > MOVE_STEP) {
+        if (remaining > MOVE_STEP) {//差が1より大きい
             next = current + MOVE_STEP;
-        } else if (remaining < -MOVE_STEP) {
+        } else if (remaining < -MOVE_STEP) {//差が-1より小さい
             next = current - MOVE_STEP;
         }
 
