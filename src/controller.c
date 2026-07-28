@@ -19,11 +19,18 @@
 #define TRANSFER_RETRIES   100
 #define OVEN_COUNT         2
 
-typedef enum {
-    CONVEYOR_EMPTY = 0,
+typedef enum {//コンベアの積載状態
+    CONVEYOR_EMPTY = 0, 
     CONVEYOR_DOUGH,
     CONVEYOR_BREAD
 } ConveyorLoad;
+
+/*
+#define CONVEYOR_EMPTY 0
+#define CONVEYOR_DOUGH 1
+#define CONVEYOR_BREAD 2
+*/
+
 
 typedef struct {
     int number;
