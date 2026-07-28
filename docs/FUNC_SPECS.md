@@ -42,5 +42,30 @@
 
 #### move_conveyor()
 
-- 
+- コンベアを目的座標まで移動させる
+- オーバーシュート対策で最大移動距離は1.0
+- 引数
+    - target : 目的とする座標
+
+- 戻り値
+    - 正常終了でゼロ
+    - 異常発生で-1
+
+
+#### should_report_retry()
+ - ログを間引く関数
+ - retry_positioned_operation()で呼び出される
+ - 引数
+    - attempt : retry_positioned_operation()の実行カウンタ
+    - 
+
+#### retry_positioned_operation()
+
+- 測定ノイズ対策で同じ関数を100回呼び出す
+- 引数
+    - position : 目標座標
+    - operation : 関数ポインタを渡す
+
+
+
 
