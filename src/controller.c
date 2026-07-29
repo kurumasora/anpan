@@ -108,7 +108,7 @@ static int move_conveyor(double target)
 static int should_report_retry(int attempt)
 {
     return attempt == 0 || (attempt + 1) % 10 == 0 ||
-           attempt + 1 == TRANSFER_RETRIES;
+           attempt + 1 == TRANSFER_RETRIES;//初回または10の倍数または100回目なら１(真)を返す
 }
 
 static int retry_positioned_operation(double position, int (*operation)(void))
@@ -117,11 +117,11 @@ static int retry_positioned_operation(double position, int (*operation)(void))
     int result = 666;
 
     for (attempt = 0; attempt < TRANSFER_RETRIES; ++attempt) {
-        result = operation();
-        if (result == 0) {
+        result = operation(); //引数の関数を呼び出している(呼び出し元によって変わる)
+        if (result == 0) {//呼び出した関数の戻り値が666ではなく正常終了している
             return 0;
         }
-        if (should_report_retry(attempt)) {
+        if (should_report_retry(attempt)) {//真なら
             fprintf(stderr,
                     "[RETRY] Transfer returned %d at target %.2f, "
                     "measured %.3f (%d/%d)\n",
@@ -143,7 +143,7 @@ static int fetch_dough(void)
         fprintf(stderr, "[ERROR] Could not obtain dough\n");
         return -1;
     }
-    conveyor_load = CONVEYOR_DOUGH;
+    conveyor_load = CONVEYOR_DOUGH; //コンベアフラグをdoughに設定
     return 0;
 }
 
@@ -163,7 +163,7 @@ static int load_oven(int oven)
     for (attempt = 0; attempt < TRANSFER_RETRIES; ++attempt) {
         last_result = set_dough(oven);
         if (last_result == 0) {
-            conveyor_load = CONVEYOR_EMPTY;
+            conveyor_load = CONVEYOR_EMPTY;//本質
             if (start_bake(oven, 0) == 0) {
                 return 0;
             }
