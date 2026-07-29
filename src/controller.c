@@ -81,8 +81,13 @@ static int move_conveyor(double target)
 
         if (remaining > MOVE_STEP) {//差が1より大きい
             next = current + MOVE_STEP;
+<<<<<<< Updated upstream
         } else if (remaining < -MOVE_STEP) {//差が-1より小さい
             next = current - MOVE_STEP;
+=======
+        } else if (remaining < -MOVE_STEP) {
+¡            next = current - MOVE_STEP;
+>>>>>>> Stashed changes
         }
 
         if (next < 0.0 || next >= 3.5) {
